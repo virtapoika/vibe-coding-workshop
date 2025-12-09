@@ -58,6 +58,11 @@ app.post('/api/products', (req, res) => {
     return;
   }
 
+  if (price < 0 || quantity < 0) {
+    res.status(400).json({ error: 'Price and quantity must be non-negative' });
+    return;
+  }
+
   db.run(
     `INSERT INTO products (name, description, category, price, quantity, sku, image_url) 
      VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -76,6 +81,16 @@ app.post('/api/products', (req, res) => {
 app.put('/api/products/:id', (req, res) => {
   const { id } = req.params;
   const { name, description, category, price, quantity, sku, image_url } = req.body;
+  
+  if (!name || !category || price === undefined || quantity === undefined || !sku) {
+    res.status(400).json({ error: 'Missing required fields' });
+    return;
+  }
+
+  if (price < 0 || quantity < 0) {
+    res.status(400).json({ error: 'Price and quantity must be non-negative' });
+    return;
+  }
   
   db.run(
     `UPDATE products 
