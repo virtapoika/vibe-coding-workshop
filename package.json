@@ -7,12 +7,17 @@
     "start": "node server.js",
     "init-db": "node init-db.js"
   },
-  "keywords": ["inventory", "retail", "management"],
+  "keywords": [
+    "inventory",
+    "retail",
+    "management"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
     "sqlite3": "^5.1.7"
   }
 }
