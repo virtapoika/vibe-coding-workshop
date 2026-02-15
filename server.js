@@ -31,6 +31,11 @@ const db = new sqlite3.Database('inventory.db', (err) => {
 
 // API Routes
 
+// Simple hello world endpoint
+app.get('/hello', (req, res) => {
+  res.send('Hello, world!');
+});
+
 // Get all products
 app.get('/api/products', (req, res) => {
   db.all('SELECT * FROM products ORDER BY id', [], (err, rows) => {
